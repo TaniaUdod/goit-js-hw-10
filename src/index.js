@@ -1,5 +1,5 @@
-import "./styles.css";
 import { fetchBreeds, fetchCatByBreed } from "./cat-api";
+import "./styles.css";
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -9,7 +9,7 @@ const loader = document.querySelector(".loader");
 const error = document.querySelector(".error");
 const catInfo = document.querySelector(".cat-info");
 
-selector.addEventListener("click", onSelectBreed);
+selector.addEventListener("change", onSelectBreed);
 
 loader.classList.replace('loader', 'is-hidden');
 error.classList.add('is-hidden');
@@ -43,25 +43,16 @@ function onSelectBreed(event) {
             selector.classList.remove('is-hidden');
             
             const { url, breeds } = data[0];
-            catInfo.innerHTML = `<div class="box-img"><img src="${url}" alt="${breeds[0].name}" width="400"/></div><div class="box"><h1>${breeds[0].name}</h1><p>${breeds[0].description}</p><p><b>Temperament:</b> ${breeds[0].temperament}</p></div>`
+            catInfo.innerHTML =
+                `<img src="${url}" alt="${breeds[0].name}" width="400"/>
+                <h2>${breeds[0].name}</h2>
+                <p>${breeds[0].description}</p>
+                <p><b>Temperament:</b> ${breeds[0].temperament}</p>`
 
-        // catInfo.innerHTML = createMarkup();
-        catInfo.classList.remove('is-hidden');
+            catInfo.classList.remove('is-hidden');
     })
     .catch(onFetchError);
 }
-
-// function createMarkup(arr) {
-//     return arr.map(({url, breeds}) => {
-//         `<div class="box-img">
-//         <img src="${url}" alt="${breeds[0].name}" width="400"/></div>
-//         <div class="box"><h1>${breeds[0].name}</h1>
-//         <p>${breeds[0].description}</p>
-//         <p><b>Temperament:</b> ${breeds[0].temperament}</p></div>`
-//     })
-//         .join("");
-// };
-
 
 function onFetchError(error) {
     selector.classList.remove('is-hidden');
