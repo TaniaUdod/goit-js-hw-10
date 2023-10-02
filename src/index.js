@@ -44,10 +44,10 @@ function onSelectBreed(event) {
             
             const { url, breeds } = data[0];
             catInfo.innerHTML =
-                `<img src="${url}" alt="${breeds[0].name}" width="400"/>
-                <h2>${breeds[0].name}</h2>
+                `<div class="box-container"><img src="${url}" alt="${breeds[0].name}" width="400"/>
+                <div><h2>${breeds[0].name}</h2>
                 <p>${breeds[0].description}</p>
-                <p><b>Temperament:</b> ${breeds[0].temperament}</p>`
+                <p><b>Temperament:</b> ${breeds[0].temperament}</p></div></div>`
 
             catInfo.classList.remove('is-hidden');
     })
